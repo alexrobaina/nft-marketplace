@@ -1,4 +1,6 @@
+import { useEffect } from "react";
 import type { NextPage } from "next";
+import axios from "axios";
 import { useSession, signIn, signOut } from "next-auth/react";
 import Head from "next/head";
 import Image from "next/image";
@@ -6,6 +8,15 @@ import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
   const { data: session }: any = useSession();
+
+  useEffect(() => {
+    if (session) {
+      const fetchData = async () => {
+        await axios.post("api/user/createUser", session);
+      };
+      fetchData();
+    }
+  }, [session]);
 
   return (
     <div className={styles.container}>
