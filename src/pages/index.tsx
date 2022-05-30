@@ -1,23 +1,19 @@
-import { useEffect } from "react";
 import type { NextPage } from "next";
-import axios from "axios";
 import { useSession, signIn, signOut } from "next-auth/react";
 import Head from "next/head";
 import Image from "next/image";
+import { useEffect } from "react";
+import { useMoralis } from "react-moralis";
 import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
   const { data: session }: any = useSession();
+  const { authenticate, isAuthenticated, logout, account, chainId } =
+    useMoralis();
 
   useEffect(() => {
-    if (session) {
-      const fetchData = async () => {
-        await axios.post("api/user/createUser", session);
-      };
-      fetchData();
-    }
-  }, [session]);
-
+    authenticate();
+  }, []);
   return (
     <div className={styles.container}>
       <Head>
@@ -27,7 +23,7 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>DApp</h1>
+        <h1 className={styles.title}>DApp {account}</h1>
         {session && (
           <>
             Signed in as {session?.user.email} <br />
