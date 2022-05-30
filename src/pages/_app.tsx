@@ -4,12 +4,11 @@ import type { AppProps } from "next/app";
 import { MoralisProvider } from "react-moralis";
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const moralisServer = process.env.MORALIS_URL_SERVER || "";
+  const moralisAppId = process.env.MORALIS_URL_SERVER || "";
   return (
     <SessionProvider session={pageProps.session}>
-      <MoralisProvider
-        serverUrl="https://l4rmg5pomqwf.usemoralis.com:2053/server"
-        appId="AXn5ZFR8XAQ9bqZg5nHxqozBT7yyJDUEyrqVG07B"
-      >
+      <MoralisProvider serverUrl={moralisServer} appId={moralisAppId}>
         <Component {...pageProps} />
       </MoralisProvider>
     </SessionProvider>
