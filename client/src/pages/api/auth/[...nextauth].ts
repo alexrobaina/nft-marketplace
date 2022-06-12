@@ -28,20 +28,20 @@ const options = {
         avatar: session.user.image,
       };
 
-      const user = await prisma.user.findUnique({
-        where: { email: session.user.email },
-      });
+      // const user = await prisma.user.findUnique({
+      //   where: { email: session.user.email },
+      // });
 
-      // console.log('user', user);
+      // // console.log('user', user);
 
-      if (!user) {
-        const userCreated: any = await prisma.user.create({ data: dataUser });
+      // if (!user) {
+      const userCreated: any = await prisma.user.create({ data: dataUser });
 
-        console.log('userCreated', userCreated.data);
-        // session.user.id = userCreated.user.
-      }
+      console.log('userCreated', userCreated?.data);
+      // session.user.id = userCreated.user.
+      // }
 
-      return session;
+      return true;
     },
   },
   pages: {
