@@ -33,19 +33,31 @@ const options = {
         where: { email: session.user.email },
       });
 
-      console.log('user', user);
       if (user === null) {
         console.log(1);
-
         userCreated = await prisma.user.create({ data: dataUser });
       }
 
-      // if (!user) {
-
-      // session.user.id = userCreated.user.
-      // }
-
       return Promise.resolve(session);
+    },
+    createUser: async ({ session }: any) => {
+      const dataUser = {
+        email: session.user.email,
+        name: session.user.name,
+        avatar: session.user.image,
+      };
+      let userCreated;
+
+      const user = await prisma.user.findUnique({
+        where: { email: session.user.email },
+      });
+
+      if (user === null) {
+        console.log(1);
+        userCreated = await prisma.user.create({ data: dataUser });
+      }
+
+      return true;
     },
   },
   pages: {
