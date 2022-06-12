@@ -17,7 +17,6 @@ interface Props {
   disabled?: boolean;
   marginTop?: number;
   marginRight?: number;
-  secundary?: boolean;
   isLoading?: boolean;
   marginBottom?: number;
   transparent?: boolean;
@@ -80,7 +79,6 @@ const BaseButton: FC<Props> = ({
       data-testid={`button-${testId}`}
       className={c(
         styles.button,
-        styles.buttonPrimary,
         small && styles.small,
         large && styles.large,
         medium && styles.medium,

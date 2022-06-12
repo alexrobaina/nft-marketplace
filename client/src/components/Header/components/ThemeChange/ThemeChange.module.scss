@@ -2,5 +2,9 @@
   color: var(--base-text-color);
   cursor: pointer;
   display: flex;
-  align-items: center;
+  justify-content: center;
+}
+
+.icon {
+  display: flex;
 }

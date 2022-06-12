@@ -1,8 +1,6 @@
 //SPDX-License-Identifier: Unlicense
 pragma solidity ^0.8.0;
 
-import "hardhat/console.sol";
-
 contract TreeLoveCoin {
     string public name;
     string public symbol;
@@ -66,11 +64,4 @@ contract TreeLoveCoin {
         emit Transfer(_from, _to, _value);
         return true;
     }
-
-    // function name() public view returns (string memory) {
-    //     return greeting;
-    // }
-
-    // function setGreeting(string memory _greeting) public {
-    // }
 }

@@ -15,32 +15,65 @@
 }
 
 [data-theme='dark'] {
-  --primary-color: #0c021a;
-  --secundary-color: #0c021a;
-
-  --background: #0c021a;
+  --background: #1b222b;
   --foreground: #fff;
 
-  --wallet-button-background: #2D2E37;
-  --wallet-button-text: #7c1fff;
-  --wallet-button-border: #7c1fff;
+  --primary-color: #c40eca;
+  --secundary-color: #fff;
 
-  --primary-color-text: #fff;
-  
-  --modal-background: #181C1F;
+  --disabled-text: rgb(203, 203, 203);
+  --text-primary: #fff;
+
+  --modal-background: #181c1f;
+
+  // Card colors
+  --category-text: rgb(178, 178, 178);
+  --description-text: #fff;
+  --price-text: #f700ff;
+  --name-text: #f700ff;
+
+  // input colors
+  --input-border: #f700ff;
+  --input-backgound: #27303c;
+  --input-focus: #2d1aff;
+  --input-hover: #2d1aff;
+  --input-placeholder: #7493bb;
+
+  // navbar colors
+  --text-navigation: #f9f8fe;
+
+  // Button
+  --button-background: #a5a5a551;
 }
 
 [data-theme='light'] {
-  --primary-color: #0c021a
-  --secundary-color: #0c021a
-  
   --background: #fff;
   --foreground: #0c021a;
-  
-  --wallet-button-background: #4c0ca5;
-  --wallet-button-text: #fff;
 
-  --primary-color-text: #4c0ca5;
-  
+  --primary-color: #1b222b;
+  --secundary-color: #5144e6;
+
+  --disabled-text: rgb(203, 203, 203);
+  --text-primary: #fafcff;
+
   --modal-background: #fff;
+
+  // Card colors
+  --category-text: #c40eca;
+  --description-text: #1b222b;
+  --price-text: #5144e6;
+  --name-text: #2d1aff;
+
+  // navbar colors
+  --text-navigation: #c40eca;
+
+  // input colors
+  --input-border: #f700ff;
+  --input-backgound: rgb(245, 245, 245);
+  --input-focus: #2d1aff;
+  --input-hover: #2d1aff;
+  --input-placeholder: #1b222b;
+
+  // Button
+  --button-background: #8e8e8e47;
 }

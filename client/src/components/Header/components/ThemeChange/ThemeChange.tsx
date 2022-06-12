@@ -9,7 +9,7 @@ const LIGHT = 'light';
 
 const ThemeChange: FC = () => {
   const { setTheme } = useTheme();
-  const [themeState, setThemeState] = useState(DARK);
+  const [themeState, setThemeState] = useState(LIGHT);
 
   const handleSetTheme = useCallback((themeSelected: string) => {
     setTheme(themeSelected);
@@ -17,18 +17,18 @@ const ThemeChange: FC = () => {
   }, []);
 
   useEffect(() => {
-    setTheme(DARK);
+    setTheme(LIGHT);
   }, [setTheme]);
 
   return (
     <div className={styles.themeButton}>
       {themeState === DARK ? (
         <div onClick={() => handleSetTheme(LIGHT)}>
-          <BsFillEmojiSunglassesFill size={22} />
+          <BsFillEmojiSunglassesFill className={styles.icon} size={22} />
         </div>
       ) : (
         <div onClick={() => handleSetTheme(DARK)}>
-          <FaRegMoon size={20} />
+          <FaRegMoon className={styles.icon} size={20} />
         </div>
       )}
     </div>

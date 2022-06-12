@@ -25,7 +25,7 @@ const BaseText: FC<Props> = ({
   marginTop,
   marginLeft,
   marginRight,
-  thin = true,
+  thin = false,
   marginBottom,
   color = '',
   bold = false,
@@ -43,7 +43,6 @@ const BaseText: FC<Props> = ({
         marginBottom,
         fontSize: size,
       }}
-      data-testid={`text-${testId}`}
       className={c(
         styles.text,
         bold && styles.bold,
@@ -52,6 +51,7 @@ const BaseText: FC<Props> = ({
         medium && styles.medium,
         regular && styles.regular,
       )}
+      data-testid={`text-${testId}`}
     >
       {text}
     </div>

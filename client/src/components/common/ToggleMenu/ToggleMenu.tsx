@@ -1,29 +1,27 @@
 import { FC, ReactElement } from 'react';
 import { motion } from 'framer-motion';
 import { VARIANTS_OPACITY } from '../../../constants/animation';
-import Header from 'components/Header';
-import styles from './Layout.module.scss';
+import styles from './ToggleMenu.module.scss';
 
 interface Props {
-  testID: string;
   children?: ReactElement;
+  isOpen: boolean;
 }
 
-const Layout: FC<Props> = ({ children, testID }) => {
+const ToggleMenu: FC<Props> = ({ children, isOpen }) => {
+  const open = isOpen ? 'flex' : 'none';
   return (
     <motion.div
       initial="hidden"
       animate="visible"
-      className={styles.layout}
       variants={VARIANTS_OPACITY}
+      className={styles.toggleMenu}
+      style={{ marginTop: '50px', display: open }}
       transition={{ ease: 'easeOut', delay: 0.2 }}
     >
-      <Header />
-      <div data-testid={`layout-${testID}`} className={styles.row}>
-        {children}
-      </div>
+      {children}
     </motion.div>
   );
 };
 
-export default Layout;
+export default ToggleMenu;

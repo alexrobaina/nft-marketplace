@@ -1,0 +1,45 @@
+.cardContainar {
+  width: 250px;
+  border-radius: 10px;
+  -webkit-box-shadow: 0px 0px 11px 0px rgba(0, 0, 0, 0.23);
+  box-shadow: 0px 0px 11px 0px rgba(0, 0, 0, 0.23);
+}
+
+.containerActions {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.content {
+  padding: 20px;
+}
+
+.category {
+  color: var(--category-text);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.description {
+  color: var(--description-text);
+  font-size: 14px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.price {
+  color: var(--price-text);
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.priceTitle {
+  color: var(--price-text);
+  font-size: 12px;
+  margin-top: -5px;
+}
+
+.name {
+  color: var(--name-text);
+}

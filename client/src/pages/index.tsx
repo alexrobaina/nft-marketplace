@@ -1,23 +1,13 @@
-import { useWalletConnect } from 'components/Providers/ProviderWeb3/ProviderWeb3';
-import { useWallet } from 'hooks/useWallet';
+import Card from 'components/common/Card';
 import type { NextPage } from 'next';
-import { useSession, signOut } from 'next-auth/react';
+import { signIn, signOut, useSession } from 'next-auth/react';
 import Head from 'next/head';
-import Image from 'next/image';
-import { useState } from 'react';
-import BaseInput from '../components/common/BaseInput';
+
+import content from '../content/meta.json';
 import styles from '../styles/Home.module.scss';
 
 const Home: NextPage = () => {
   const { data: session }: any = useSession();
-  const [address, setAddress]: any = useState('');
-  const [value, setValue]: any = useState(0);
-  const { sendTransaction }: any = useWalletConnect();
-
-  const handleSendTransaction = () => {
-    sendTransaction(address, value);
-  };
-
   return (
     <div className={styles.container}>
       <Head>
@@ -26,38 +16,38 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
+        <div className={styles.collectionContainer}>
+          {content.map((nft) => {
+            return (
+              <Card
+                marginTop={30}
+                name={nft.name}
+                image={nft.image}
+                category={nft.category}
+                description={nft.description}
+                price={nft.attributes[2].value}
+              />
+            );
+          })}
+        </div>
+
         {session && (
           <>
             Signed in as {session?.user.email} <br />
             <button onClick={() => signOut()}>Sign out</button>
           </>
         )}
-        <BaseInput
-          label="address"
-          inputName="address"
-          placeholder="Address from"
-          handleChange={(e) => setAddress(e.target.value)}
-        />
-        <BaseInput
-          marginTop={30}
-          label="Value"
-          type="number"
-          inputName="value"
-          placeholder="Value"
-          handleChange={(e) => setValue(e.target.value)}
-        />
-        <button onClick={() => handleSendTransaction()}>send transaction</button>
-        {/* {!session && (
+        {!session && (
           <>
             Not signed in <br />
             <button onClick={() => signIn('github')}>Sign in with github</button>
             <button onClick={() => signIn('facebook')}>Sign in with facebook</button>
             <button onClick={() => signIn('google')}>Sign in with google</button>
           </>
-        )} */}
+        )}
       </main>
 
-      <footer className={styles.footer}>
+      {/* <footer className={styles.footer}>
         <a
           href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
           target="_blank"
@@ -68,7 +58,7 @@ const Home: NextPage = () => {
             <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
           </span>
         </a>
-      </footer>
+      </footer> */}
     </div>
   );
 };
