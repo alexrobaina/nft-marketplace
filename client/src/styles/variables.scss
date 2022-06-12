@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
+
+:root {
+  transition-duration: 0.3s;
+  transition-timing-function: linear;
+
+  //fonts
+  --main-font: 'Poppins', sans-serif;
+
+  --base-text-color: var(--foreground);
+  --ligth: #fff;
+}
+
+[data-theme='dark'] {
+  --primary-color: #0c021a;
+  --secundary-color: #0c021a;
+
+  --background: #0c021a;
+  --foreground: #fff;
+
+  --wallet-button-background: #2D2E37;
+  --wallet-button-text: #7c1fff;
+  --wallet-button-border: #7c1fff;
+
+  --primary-color-text: #fff;
+  
+  --modal-background: #181C1F;
+}
+
+[data-theme='light'] {
+  --primary-color: #0c021a
+  --secundary-color: #0c021a
+  
+  --background: #fff;
+  --foreground: #0c021a;
+  
+  --wallet-button-background: #4c0ca5;
+  --wallet-button-text: #fff;
+
+  --primary-color-text: #4c0ca5;
+  
+  --modal-background: #fff;
+}

@@ -1,0 +1,88 @@
+@import '../../../styles/mixings.scss';
+
+.button {
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  height: 48px;
+  cursor: pointer;
+  transition: 0.3s;
+  font-family: var(--main-font);
+}
+
+.buttonPrimary {
+  background-color: var(--button-background);
+  color: var(--button-text);
+  width: 312px;
+  height: 48px;
+  transition: 0.3s;
+}
+
+.isButtonLink {
+  color: var(--button-link);
+  font-size: 16px;
+  line-height: 24px;
+  text-decoration: underline;
+  height: 25px;
+  cursor: pointer;
+  font-family: var(--main-font);
+  background: none;
+  border: none;
+
+  &.iconContainer {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+  }
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  margin-right: 8px;
+}
+
+.linkText {
+  margin-right: 10px;
+}
+
+.buttonStateSuccess {
+  color: #fff;
+  background: #569e3d linear-gradient(#79d858, #569e3d) repeat-x;
+}
+
+.buttonStateDisabled {
+  color: var(--white-color);
+  background-color: var(--button--state-disabled-text);
+  opacity: 0.5;
+}
+
+.small {
+  width: 100px;
+  display: flex;
+  justify-content: center;
+}
+
+.medium {
+  width: 200px;
+  display: flex;
+  justify-content: center;
+}
+
+.large {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.containerLoading {
+  transition: 0.3s;
+  margin-left: -25px;
+  margin-right: 10px;
+}
+
+.text {
+  transition: 0.3s;
+}

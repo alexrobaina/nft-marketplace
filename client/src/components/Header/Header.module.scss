@@ -1,0 +1,94 @@
+@import '../../styles/mixings.scss';
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 70px;
+  padding: 10px 15px;
+  align-items: center;
+  position: fixed;
+  background-color: var(--background);
+
+  transition-duration: 0.3s;
+  transition-timing-function: linear;
+
+  @include media-breakpoint-between(xs, sm) {
+    padding: 10px ​15px 0 15px;
+  }
+
+  @include media-breakpoint-between(sm, xxl) {
+    padding: 10px ​15px 0 15px;
+  }
+}
+
+.walletConnect {
+  display: flex;
+  flex-flow: row nowrap;
+  border-radius: 14px;
+  align-items: center;
+  cursor: pointer;
+  height: 36px;
+  margin-right: 2px;
+  margin-left: 1px;
+  font-weight: 500;
+  padding: 10px 12px 10px 12px;
+  user-select: none;
+  background-color: var(--wallet-button-background);
+  color: var(--wallet-button-text);
+  transition: all;
+
+  &:hover {
+    border: 1px solid rgb(118, 177, 249);
+  }
+}
+
+.containerActions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.containerAccountWallet {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  -webkit-box-align: center;
+  align-items: center;
+  background-color: rgb(182, 186, 195);
+  border-radius: 16px;
+  white-space: nowrap;
+  width: 90%;
+  height: 40px;
+}
+
+.balance {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--wallet-button-text);
+  margin-right: 10px;
+}
+
+.walletsConnectios {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.walletButton {
+  display: flex;
+  background-color: var(--wallet-button-background);
+  display: flex;
+  flex-direction: row;
+  -webkit-box-align: center;
+  align-items: center;
+  cursor: pointer;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  padding: 1rem;
+  outline: none;
+  border: 1px solid rgb(64, 68, 79);
+  border-radius: 12px;
+  width: 100% !important;
+}

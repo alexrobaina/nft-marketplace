@@ -1,0 +1,11 @@
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 200px;
+}
+
+.link {
+  color: var(--base-text-color);
+  cursor: pointer;
+}
