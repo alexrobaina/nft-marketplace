@@ -15,5 +15,4 @@ model User {
   coverImage       String?
   avatar           String?
   socialMediaLinks String[]
-  // roles            String[] // [, "admin", "staff", ...]
 }

@@ -4,6 +4,7 @@ import FacebookProvider from 'next-auth/providers/facebook';
 import GoogleProvider from 'next-auth/providers/google';
 import prisma from '../../../prisma/prisma';
 import { userInfo } from 'os';
+import { Prisma } from '@prisma/client';
 
 const options = {
   providers: [
@@ -22,7 +23,7 @@ const options = {
   ],
   callbacks: {
     session: async ({ session }: any) => {
-      const dataUser = {
+      const dataUser: Prisma.UserCreateInput = {
         email: session.user.email,
         name: session.user.name,
         avatar: session.user.image,
