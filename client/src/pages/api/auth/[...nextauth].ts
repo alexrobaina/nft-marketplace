@@ -27,21 +27,25 @@ const options = {
         name: session.user.name,
         avatar: session.user.image,
       };
+      let userCreated;
 
-      // const user = await prisma.user.findUnique({
-      //   where: { email: session.user.email },
-      // });
+      const user = await prisma.user.findUnique({
+        where: { email: session.user.email },
+      });
 
-      // // console.log('user', user);
+      console.log('user', user);
+      if (user === null) {
+        console.log(1);
+
+        userCreated = await prisma.user.create({ data: dataUser });
+      }
 
       // if (!user) {
-      const userCreated: any = await prisma.user.create({ data: dataUser });
 
-      console.log('userCreated', userCreated?.data);
       // session.user.id = userCreated.user.
       // }
 
-      return true;
+      return Promise.resolve(session);
     },
   },
   pages: {
