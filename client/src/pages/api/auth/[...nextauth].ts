@@ -3,8 +3,7 @@ import GitHubProvider from 'next-auth/providers/github';
 import FacebookProvider from 'next-auth/providers/facebook';
 import GoogleProvider from 'next-auth/providers/google';
 import prisma from '../../../prisma/prisma';
-import { userInfo } from 'os';
-import { Prisma } from '@prisma/client';
+import { PrismaAdapter } from '@next-auth/prisma-adapter';
 
 const options = {
   providers: [
@@ -21,66 +20,11 @@ const options = {
       clientSecret: process.env.GOOGLE_CLIENT_SECRET || '',
     }),
   ],
+  adapter: PrismaAdapter(prisma),
   callbacks: {
     session: async ({ session }: any) => {
-      const dataUser: Prisma.UserCreateInput = {
-        email: session.user.email,
-        name: session.user.name,
-        avatar: session.user.image,
-      };
-      let userCreated;
-
-      const user = await prisma.user.findUnique({
-        where: { email: session.user.email },
-      });
-
-      if (user === null) {
-        console.log(1);
-        userCreated = await prisma.user.create({ data: dataUser });
-      }
-
       return Promise.resolve(session);
     },
-    createUser: async ({ session }: any) => {
-      const dataUser = {
-        email: session.user.email,
-        name: session.user.name,
-        avatar: session.user.image,
-      };
-      let userCreated;
-
-      const user = await prisma.user.findUnique({
-        where: { email: session.user.email },
-      });
-
-      if (user === null) {
-        console.log(1);
-        userCreated = await prisma.user.create({ data: dataUser });
-      }
-
-      return true;
-    },
-  },
-  pages: {
-    signIn: '/', //Need to define custom login page (if using)
-    // async signIn({ user, session }: any) {
-    //   const dataUser = {
-    //     email: user.email,
-    //     name: user.name,
-    //     image: user.image,
-    //   };
-    //   try {
-    //     // const userDB = await prisma.user.create({ data: dataUser });
-    //   } catch (error) {
-    //     console.log(error);
-    //   }
-
-    //   return true;
-    // },
-    // session: async (session: any, user: any) => {
-    //   session.user.username = 'saraza';
-    //   return Promise.resolve(session);
-    // },
   },
 };
 
