@@ -19,7 +19,7 @@ model Session {
 model User {
   id               String    @id @default(cuid())
   createdAt        DateTime  @default(now())
-  email            String    @unique
+  email            String
   name             String?
   coverImage       String?
   image            String?
