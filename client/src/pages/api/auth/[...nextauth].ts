@@ -41,11 +41,6 @@ const options = {
 
       return true;
     },
-    session: async ({ session }: any) => {
-      console.log('session', session);
-      // console.log('session', session);
-      return session;
-    },
   },
 };
 
