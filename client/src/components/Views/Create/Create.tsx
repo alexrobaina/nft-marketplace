@@ -45,7 +45,7 @@ const Create: NextPage = () => {
     },
   });
 
-  const { handleChange, handleSubmit } = formik;
+  const { handleChange, handleSubmit, values } = formik;
 
   if (session === null) {
     router.push('/');
@@ -95,10 +95,10 @@ const Create: NextPage = () => {
             <BaseInput
               marginTop={20}
               inputName="name"
-              label="Display name"
+              label="Name"
+              placeholder="My NFT name"
               handleChange={handleChange}
-              // defaultValue={user?.name || ''}
-              placeholder="Enter your display name"
+              defaultValue={values.name || ''}
             />
             <BaseInput
               marginTop={20}
