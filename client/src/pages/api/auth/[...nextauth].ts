@@ -22,7 +22,7 @@ const options = {
     }),
   ],
   callbacks: {
-    signIn: async ({ user, session }: any) => {
+    signIn: async ({ user }: any) => {
       const userDB = await prisma.user.findUnique({
         where: {
           email: user.email,
@@ -40,6 +40,16 @@ const options = {
       }
 
       return true;
+    },
+    session: async ({ session }: any) => {
+      const userDB: any = await prisma.user.findUnique({
+        where: {
+          email: session.user.email,
+        },
+      });
+
+      session.user.id = userDB.id;
+      return Promise.resolve(session);
     },
   },
 };

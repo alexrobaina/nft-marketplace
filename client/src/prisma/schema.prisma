@@ -14,5 +14,12 @@ model User {
   name             String?
   coverImage       String?
   image            String?
+  profileBio       String?
   socialMediaLinks String[]
+  role             Role     @default(USER)
+}
+
+enum Role {
+  ADMIN
+  USER
 }

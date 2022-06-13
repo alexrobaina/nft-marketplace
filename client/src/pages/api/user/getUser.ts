@@ -1,22 +1,18 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
+import prisma from '../../../prisma/prisma';
 import { getSession } from 'next-auth/react';
 
 module.exports = async (req: NextApiRequest, res: NextApiResponse) => {
-  const session = await getSession({ req });
+  const session: any = await getSession({ req });
 
   if (!session) {
     res.status(400).json({ statusCode: 400, message: 'Invalid session.' });
     return;
   }
-  console.log(session);
-  // const user = await prisma.user.findUnique({
-  //   where: { id: 1 },
-  // });
-  //   const userId = session.user.id
 
-  // console.log(user);
+  const user = await prisma.user.findUnique({
+    where: { id: session?.user?.id },
+  });
 
-  //   const response = await getUser(userId)
-
-  res.json({ user: null });
+  res.json({ user });
 };
