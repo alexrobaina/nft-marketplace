@@ -47,8 +47,8 @@ const Card: FC<Props> = ({
           </div>
         </div>
         <div className={styles.containerActions}>
-          <BaseButton onClick={handleBuy} text="Buy" />
-          <BaseButton onClick={handlePreview} text="Preview" />
+          {handleBuy && <BaseButton onClick={handleBuy} text="Buy" />}
+          {handlePreview && <BaseButton onClick={handlePreview} text="Preview" />}
         </div>
       </div>
     </div>

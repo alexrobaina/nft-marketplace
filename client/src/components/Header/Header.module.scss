@@ -24,6 +24,7 @@
 
 .containerActions {
   display: flex;
+  position: relative;
   align-items: center;
   gap: 35px;
 }
@@ -32,7 +33,6 @@
   width: 40px;
   height: 40px;
   border-radius: 100%;
-  position: relative;
   background: linear-gradient(
     171deg,
     rgba(70, 143, 122, 1) 7%,
@@ -48,6 +48,7 @@
 }
 
 .linkNavigation {
+  cursor: pointer;
   text-decoration: none;
   color: var(--text-navigation);
   transition-property: width;
@@ -67,6 +68,7 @@
 }
 
 .containarMenu {
+  cursor: pointer;
   display: flex;
   flex-direction: column;
 }
@@ -93,4 +95,11 @@
 .activeLink {
   background-color: var(--button-background);
   border-radius: 10px;
+}
+
+.avatar {
+  border-radius: 100%;
+}
+.containerToggle {
+  position: relative;
 }

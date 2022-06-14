@@ -13,7 +13,9 @@ import BaseText from 'components/common/BaseText';
 import { useQuery } from 'react-query';
 import axios from 'axios';
 import Image from 'next/image';
+import content from '../../../content/meta.json';
 import styles from './Create.module.scss';
+import Card from 'components/common/Card';
 
 const FORM_STATE = {
   name: '',
@@ -64,23 +66,6 @@ const Create: NextPage = () => {
     >
       <form onSubmit={handleSubmit}>
         <div className={styles.info}>
-          {session?.user?.image && (
-            <div className={styles.contentAvatar}>
-              <Image
-                width={150}
-                height={150}
-                loading="lazy"
-                objectFit="contain"
-                className={styles.userImage}
-                src={`${session?.user?.image}`}
-              />
-              {/* <div>
-                <MdModeEdit size={25} />
-              </div> */}
-            </div>
-          )}
-          {/* <label htmlFor="upload-avatar"></label> */}
-          {/* {!user?.avatar && <AvatarImageNotFound />} */}
           <div>
             <BaseText bold size={20} text="Create NFT Metadata" />
             <BaseText
@@ -89,63 +74,32 @@ const Create: NextPage = () => {
             />
           </div>
         </div>
-        <div>
+        <div className={styles.containerForm}>
           <div>
-            <BaseText bold marginTop={35} size={20} text="About you" />
             <BaseInput
-              marginTop={20}
               inputName="name"
               label="Name"
               placeholder="My NFT name"
               handleChange={handleChange}
-              defaultValue={values.name || ''}
+              // defaultValue={values.name || ''}
             />
             <BaseInput
               marginTop={20}
-              inputName="email"
-              label="Email"
+              inputName="description"
+              label="Description"
               handleChange={handleChange}
-              placeholder="Enter your email"
+              placeholder="Enter NFT description"
               // defaultValue={user?.email || ''}
             />
           </div>
-        </div>
-        <div>
-          <BaseInput
-            label="Bio"
-            marginTop={20}
-            inputName="profileBio"
-            handleChange={handleChange}
-            // defaultValue={user?.profileBio || ''}
-            placeholder="Tell about yourself in a few words"
-          />
-        </div>
-        <div>
-          <BaseText bold marginTop={35} size={20} text="Social media" />
           <div>
-            <BaseInput
-              marginTop={10}
-              label="Twitter"
-              inputName="twitter"
-              handleChange={handleChange}
-              placeholder="Enter your Twitter URL"
-              // defaultValue={getSocialMediaValue(
-              //   user?.socialMediaLinks || [],
-              //   'twitter'
-              // )}
-            />
-          </div>
-          <div>
-            <BaseInput
-              marginTop={20}
-              inputName="instagram"
-              label="Instagram"
-              handleChange={handleChange}
-              placeholder="Enter your Instagram URL"
-              // defaultValue={getSocialMediaValue(
-              //   user?.socialMediaLinks || [],
-              //   'instagram'
-              // )}
+            <Card
+              marginTop={30}
+              name={content[0].name}
+              image={content[0].image}
+              category={content[0].category}
+              description={content[0].description}
+              price={content[0].attributes[2].value}
             />
           </div>
         </div>
