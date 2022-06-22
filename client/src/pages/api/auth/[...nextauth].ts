@@ -47,6 +47,8 @@ const options = {
       });
 
       session.user.id = userDB.id;
+      session.user.profileBio = userDB.profileBio;
+      session.user.socialMediaLinks = userDB.socialMediaLinks;
       return Promise.resolve(session);
     },
   },

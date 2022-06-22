@@ -1,19 +1,19 @@
 @import '../../../styles/mixings.scss';
 
 .row {
-  padding: 80px 332px 0 332px;
+  padding: 150px 200px 0 200px;
   display: flex;
   flex-direction: column;
 
   @include media-breakpoint-between(xs, sm) {
-    padding: 80px 15px 0 15px;
+    padding: 100px 15px 0 15px;
   }
 
   @include media-breakpoint-between(sm, md) {
-    padding: 80px 200px 0 200px;
+    padding: 150px 200px 0 200px;
   }
 
   @include media-breakpoint-between(md, xl) {
-    padding: 80px 332px 0 332px;
+    padding: 150px 200px 0 200px;
   }
 }

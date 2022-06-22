@@ -1,6 +1,6 @@
 import { FC } from 'react';
-import BaseButton from '../BaseButton';
-import styles from './Card.module.scss';
+import BaseButton from '../common/BaseButton';
+import styles from './NftCard.module.scss';
 
 interface Props {
   name?: string;
@@ -15,7 +15,7 @@ interface Props {
   handlePreview?: Function;
 }
 
-const Card: FC<Props> = ({
+const NftCard: FC<Props> = ({
   name,
   price,
   image,
@@ -55,4 +55,4 @@ const Card: FC<Props> = ({
   );
 };
 
-export default Card;
+export default NftCard;

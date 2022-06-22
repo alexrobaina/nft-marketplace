@@ -1,5 +1,5 @@
 import BaseText from 'components/common/BaseText';
-import Card from 'components/common/Card';
+import Card from 'components/NftCard';
 import type { NextPage } from 'next';
 import { signIn, signOut, useSession } from 'next-auth/react';
 import Head from 'next/head';

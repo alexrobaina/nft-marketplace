@@ -31,11 +31,24 @@ const Settings: NextPage = () => {
   });
   const [nftURI, setNftURI] = useState('');
   const [hasURI, setHasURI] = useState(false);
-  const { data: session } = useSession();
+  const { data: session }: any = useSession();
   const router = useRouter();
   const variants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1 },
+  };
+
+  const getSocialMediaValue = (socialMedia: Array<any>, network: string): string => {
+    let link = '';
+    socialMedia.forEach((socialLink: string) => {
+      if (network === 'instagram') {
+        socialLink.includes('instagram') && (link = socialLink);
+      }
+      if (network === 'twitter') {
+        socialLink.includes('twitter') && (link = socialLink);
+      }
+    });
+    return link;
   };
 
   const formik = useFormik({
@@ -54,6 +67,7 @@ const Settings: NextPage = () => {
   if (isLoading) {
     return <span>Loading...</span>;
   }
+  console.log(session?.user?.socialMediaLinks);
 
   return (
     <motion.div
@@ -82,11 +96,8 @@ const Settings: NextPage = () => {
           {/* <label htmlFor="upload-avatar"></label> */}
           {/* {!user?.avatar && <AvatarImageNotFound />} */}
           <div>
-            <BaseText bold size={20} text="Create NFT Metadata" />
-            <BaseText
-              thin
-              text="This information will b displaayeed publiicaly so be careful what yoou share."
-            />
+            <BaseText bold size={20} text="Settings" />
+            <BaseText marginTop={10} thin text="Edit profile." />
           </div>
         </div>
         <div>
@@ -97,16 +108,17 @@ const Settings: NextPage = () => {
               inputName="name"
               label="Display name"
               handleChange={handleChange}
-              // defaultValue={user?.name || ''}
+              value={session?.user?.name || ''}
               placeholder="Enter your display name"
             />
             <BaseInput
+              disabled
               marginTop={20}
-              inputName="email"
               label="Email"
+              inputName="email"
               handleChange={handleChange}
               placeholder="Enter your email"
-              // defaultValue={user?.email || ''}
+              value={session?.user?.email || ''}
             />
           </div>
         </div>
@@ -116,7 +128,7 @@ const Settings: NextPage = () => {
             marginTop={20}
             inputName="profileBio"
             handleChange={handleChange}
-            // defaultValue={user?.profileBio || ''}
+            value={session?.user?.profileBio || ''}
             placeholder="Tell about yourself in a few words"
           />
         </div>
@@ -129,10 +141,10 @@ const Settings: NextPage = () => {
               inputName="twitter"
               handleChange={handleChange}
               placeholder="Enter your Twitter URL"
-              // defaultValue={getSocialMediaValue(
-              //   user?.socialMediaLinks || [],
-              //   'twitter'
-              // )}
+              value={getSocialMediaValue(
+                session?.user?.socialMediaLinks || [],
+                'twitter',
+              )}
             />
           </div>
           <div>
@@ -142,10 +154,10 @@ const Settings: NextPage = () => {
               label="Instagram"
               handleChange={handleChange}
               placeholder="Enter your Instagram URL"
-              // defaultValue={getSocialMediaValue(
-              //   user?.socialMediaLinks || [],
-              //   'instagram'
-              // )}
+              value={getSocialMediaValue(
+                session?.user?.socialMediaLinks || [],
+                'instagram',
+              )}
             />
           </div>
         </div>

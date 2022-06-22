@@ -1,21 +1,17 @@
 import { useState } from 'react';
-import React, { ChangeEvent } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { MdModeEdit } from 'react-icons/md';
 import { useFormik } from 'formik';
 import type { NextPage } from 'next';
-
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import BaseInput from 'components/common/BaseInput';
 import BaseButton from 'components/common/BaseButton';
 import BaseText from 'components/common/BaseText';
-import { useQuery } from 'react-query';
-import axios from 'axios';
-import Image from 'next/image';
-import content from '../../../content/meta.json';
+import InputUploadImage from 'components/common/InputUploadImage';
+import BaseToggleSwitch from 'components/common/BaseToggleSwitch';
+
 import styles from './Create.module.scss';
-import Card from 'components/common/Card';
 
 const FORM_STATE = {
   name: '',
@@ -28,16 +24,17 @@ const FORM_STATE = {
 };
 
 const Create: NextPage = () => {
-  const { isLoading, isError, data, error } = useQuery('user', () => {
-    return axios.get('http://localhost:3000/api/user/getUser');
-  });
   const [nftURI, setNftURI] = useState('');
   const [hasURI, setHasURI] = useState(false);
-  const { data: session } = useSession();
+  const { data: session }: any = useSession();
   const router = useRouter();
   const variants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1 },
+  };
+
+  const handleHasURI = () => {
+    setHasURI(!hasURI);
   };
 
   const formik = useFormik({
@@ -47,14 +44,10 @@ const Create: NextPage = () => {
     },
   });
 
-  const { handleChange, handleSubmit, values } = formik;
+  const { handleChange, handleSubmit, setFieldValue } = formik;
 
   if (session === null) {
     router.push('/');
-  }
-
-  if (isLoading) {
-    return <span>Loading...</span>;
   }
 
   return (
@@ -73,39 +66,65 @@ const Create: NextPage = () => {
               text="This information will b displaayeed publiicaly so be careful what yoou share."
             />
           </div>
+          <div className={styles.switchMeta}>
+            <BaseText bold text="Do you have meta data already?" />
+            <BaseToggleSwitch handleCheck={handleHasURI} checked={hasURI} />
+          </div>
         </div>
-        <div className={styles.containerForm}>
-          <div>
+        {!hasURI && (
+          <>
+            <div className={styles.containerForm}>
+              <div>
+                <BaseInput
+                  label="Name"
+                  inputName="name"
+                  placeholder="My NFT name"
+                  handleChange={handleChange}
+                />
+                <BaseInput
+                  marginTop={20}
+                  label="Description"
+                  inputName="description"
+                  handleChange={handleChange}
+                  placeholder="Enter NFT description"
+                />
+              </div>
+              <InputUploadImage
+                oldImages={[]}
+                inputName="file"
+                setFieldValue={setFieldValue}
+              />
+            </div>
+            <div className={styles.powers}>
+              <BaseInput inputName="health" label="Health" handleChange={handleChange} />
+              <BaseInput label="Attack" inputName="attack" handleChange={handleChange} />
+              <BaseInput label="Speed" inputName="speed" handleChange={handleChange} />
+            </div>
+            <div>
+              <BaseButton marginTop={20} type="submit" text="Save" />
+            </div>
+          </>
+        )}
+        {hasURI && (
+          <div className={styles.containerForm}>
             <BaseInput
-              inputName="name"
-              label="Name"
-              placeholder="My NFT name"
+              inputName="uriLink"
+              label="URI Link"
               handleChange={handleChange}
-              // defaultValue={values.name || ''}
+              placeholder="http://link.com/data/json"
             />
             <BaseInput
               marginTop={20}
-              inputName="description"
-              label="Description"
+              inputName="price"
+              placeholder="0.8"
+              label="Price (ETH)"
               handleChange={handleChange}
-              placeholder="Enter NFT description"
-              // defaultValue={user?.email || ''}
             />
+            <div>
+              <BaseButton marginTop={20} type="submit" text="List" />
+            </div>
           </div>
-          <div>
-            <Card
-              marginTop={30}
-              name={content[0].name}
-              image={content[0].image}
-              category={content[0].category}
-              description={content[0].description}
-              price={content[0].attributes[2].value}
-            />
-          </div>
-        </div>
-        <div>
-          <BaseButton marginTop={20} type="submit" text="Save" />
-        </div>
+        )}
       </form>
     </motion.div>
   );
